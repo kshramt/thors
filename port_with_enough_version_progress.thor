@@ -3,6 +3,8 @@ class PortWithEnoughVersionProgress < Thor
 
   desc "start", "Returns port names which undergone enough version progress."
   def start
+    raise "This script is not running on Mac." unless RUBY_PLATFORM =~ /darwin/
+
     puts `port outdated`.split("\n")\
       .select{|line| enough_progress?(line)}\
       .map{|line| line.split[0]}\
@@ -26,4 +28,3 @@ class PortWithEnoughVersionProgress < Thor
     [major.to_i, minor.to_i]
   end
 end
-
