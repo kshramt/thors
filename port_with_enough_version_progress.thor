@@ -8,7 +8,7 @@ class PortWithEnoughVersionProgress < Thor
     puts `port outdated`.split("\n")\
       .select{|line| enough_progress?(line)}\
       .map{|line| line.split[0]}\
-      .join("\t")
+      .join(" ")
   end
 
   private
